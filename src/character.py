@@ -1,7 +1,8 @@
 class AbilityScore:
-    def __init__(self, name="None", score=10):
+    def __init__(self, name="None", abbreviation="NON", score=10):
         self.__score = score
         self.name = name
+        self.abbreviation = abbreviation
 
     def score(self):
         return self.__score
@@ -24,22 +25,23 @@ class Character:
 			power=10,gnosis=10,quintessence=10):
 		self.name = name
 		# MIND
-		self.intelligence = AbilityScore("Intelligence", intelligence)
-		self.wisdom = AbilityScore("Wisdom", wisdom)
-		self.ego = AbilityScore("Ego", ego)
+		self.intelligence = AbilityScore(name="Intelligence", score=intelligence, abbreviation="INT")
+		self.wisdom = AbilityScore(name="Wisdom", score=wisdom, abbreviation="WIS")
+		self.ego = AbilityScore(name="Ego", score=ego, abbreviation="EGO")
 		# BODY
-		self.strength = AbilityScore("Strength", strength)
-		self.agility = AbilityScore("Ability", agility)
-		self.constitution = AbilityScore("Constitution", constitution)
+		self.strength = AbilityScore(name="Strength", score=strength, abbreviation="STR")
+		self.agility = AbilityScore(name="Ability", score=agility, abbreviation="AGI")
+		self.constitution = AbilityScore(name="Constitution", score=constitution, abbreviation="CON")
 		# SPIRIT
-		self.power = AbilityScore("Power", power)
-		self.gnosis = AbilityScore("Gnosis", gnosis)
-		self.quintessence = AbilityScore("Quintessence", quintessence)
+		self.power = AbilityScore(name="Power", score=power, abbreviation="POW")
+		self.gnosis = AbilityScore(name="Gnosis", score=gnosis, abbreviation="GNO")
+		self.quintessence = AbilityScore(name="Quintessence", score=quintessence, abbreviation="QUINT")
 		# Now that we have the functions for derived attributes,
 		# we can set the values in the class.
 		self.hitpoints = self.max_hitpoints()
 		self.stamina = self.max_stamina()
 		self.essence = self.max_essence()
+		self.copper = 0
 		
 	def max_hitpoints(self):
 		# Hit Points = Ego +  Constitution + Quintessence
