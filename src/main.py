@@ -8,4 +8,6 @@ def main():
     print(hero)
     print(money_string(234523453))
 
+    hero.status_screen()
+
 main()

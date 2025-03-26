@@ -1,20 +1,32 @@
-class AbilityScore:
-    def __init__(self, name="None", abbreviation="NON", score=10):
-        self.__score = score
-        self.name = name
-        self.abbreviation = abbreviation
 
-    def score(self):
-        return self.__score
+from util import *
+
+class AbilityScore:
+	def __init__(self, name="None", abbreviation="NON", score=10):
+		self.__score = score
+		self.name = name
+		self.abbreviation = abbreviation
+
+	def score(self):
+		return self.__score
     
-    def set_score(self, score):
-        self.__score = score
+	def set_score(self, score):
+		self.__score = score
     
-    def modifier(self):
-        return self.score//5
+	def modifier(self):
+		return self.score()//5
     
-    def __repr__(self):
-        return f"{self.name}: {self.score()}({self.modifier()})"
+	def __repr__(self):
+		return f"{self.name}: {self.score()}({self.modifier()})"
+	
+	def status_display(self):
+		space = 14
+		score_string = f"{self.score()}(+{self.modifier()})"
+		abbreviation_length = len(self.abbreviation)
+		score_length = len(score_string)
+		spaces = " " * (space-abbreviation_length-score_length)
+		return f"{self.abbreviation}{spaces}{score_string}"
+
 
     
     
@@ -42,6 +54,8 @@ class Character:
 		self.stamina = self.max_stamina()
 		self.essence = self.max_essence()
 		self.copper = 0
+		self.experience = 0
+		self.spent_experience = 0
 		
 	def max_hitpoints(self):
 		# Hit Points = Ego +  Constitution + Quintessence
@@ -59,5 +73,26 @@ class Character:
 		return self.ego.score() + self.constitution.score()
 		
 	def __repr__(self):
-	    return f"{self.name} is a Character with {self.hitpoints} hitpoints." 
+		return f"{self.name} is a Character with {self.hitpoints} hitpoints." 
 	
+	def status_screen(self):
+		print("╔══════════════════════════════════════════════════╗")
+		print(f"║ Name: {pad_after(self.name, " ", 42)} ║")
+		print("╠════════════════╦═════════════════════════════════╣")
+		exp = f"{self.experience:,}"
+		cash = money_string(self.copper)
+		print(f"║EXP: {pad_after(exp," ",9)}  ║ {pad_after(cash, " ",31)} ║")
+		print("╠════════════════╬════════════════╦════════════════╣")
+		print("║      MIND      ║      BODY      ║     SPIRIT     ║")
+		print("╠════════════════╬════════════════╬════════════════╣")
+		print(f"║ {self.intelligence.status_display()} ║ {self.strength.status_display()} ║ {self.power.status_display()} ║")
+		print("╠════════════════╬════════════════╬════════════════╣")
+		print(f"║ {self.wisdom.status_display()} ║ {self.agility.status_display()} ║ {self.gnosis.status_display()} ║")
+		print("╠════════════════╬════════════════╬════════════════╣")
+		print(f"║ {self.ego.status_display()} ║ {self.constitution.status_display()} ║ {self.quintessence.status_display()} ║")
+		print("╠════════════════╬════════════════╬════════════════╣")
+		hp = f"HP  {self.hitpoints}/{self.max_hitpoints()}"
+		sp = f"SP  {self.stamina}/{self.max_stamina()}"
+		ep = f"EP  {self.essence}/{self.max_essence()}"
+		print(f"║ {pad_after(hp," ", 14)} ║ {pad_after(sp," ", 14)} ║ {pad_after(ep," ", 14)} ║")
+		print("╚════════════════╩════════════════╩════════════════╝")
