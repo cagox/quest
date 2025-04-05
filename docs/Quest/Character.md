@@ -57,3 +57,5 @@ class AbilityScore:
 ```
 ## The Character
 This class is likely to change a lot. It might end up being entirely restructured anyway. A lot depends on how I eventually end up deciding to handle races, and monsters and such.
+
+For now I am creating the character with basic stats that will be used later down the road once other features are implemented.

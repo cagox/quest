@@ -1,3 +1,5 @@
+# Rooms
+
 ```python
 class Exit:
 	def __init__(self, destination, location):
@@ -14,3 +16,9 @@ class Room:
 		self.contents = contents
 
 ```
+
+## About Rooms
+
+Rooms are the locations that players can visit. They are containers that hold the players, exits, creatures, and any other objects that might exist in tghe world.
+
+In this intial implementation I will be creating a grid of rooms, but the associated classes may be usable in other ways eventually as well, so I am not tying the room specific code to a grid. That will be handled by the World class.
