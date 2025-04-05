@@ -39,7 +39,7 @@ class Character:
     def __init__(self, name="Hero",
         	intelligence=10, wisdom=10, ego=10,
         	strength=10, agility=10, constitution=10,
-        	power=10,gnosis=10,quintessence=10, copper=0):
+        	power=10,gnosis=10,quintessence=10, copper=0, description="A Character.", location=None):
         self.name = name
         # MIND
         self.intelligence = AbilityScore(name="Intelligence", score=intelligence, abbreviation="INT")
@@ -61,6 +61,8 @@ class Character:
         self.copper = copper
         self.experience = 0
         self.spent_experience = 0
+        self.description = description
+        self.location = location
 
     def max_hitpoints(self):
         # Hit Points = Ego +  Constitution + Quintessence

@@ -23,9 +23,12 @@ For the purpose of game system elements we will use stats and concepts from the 
 I foresee the following milestones. This may change as the project progresses of course.
 
 1. ~~Initial Character implementation~~
-2. Initial room implementation.
-3. Initial Game Loop and the ability to look at the room.
+2. ~~Initial room implementation.~~
+3. ~~Initial Game Loop~~ and the ability to look at the room.
 4. The ability to move between two rooms.
 5. The World Grid. A map of rooms.
 6. Items, and the ability to look at them and pick them up.
 7. The ability to add challenges or locks on rooms.
+8. More advanced map layout.
+9. Map command or item.
+10. multi-floor maps.
