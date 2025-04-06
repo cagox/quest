@@ -29,9 +29,10 @@ def main():
     start_room = Room("The Beginning", long_description, "The Starting Room is through that door.")
     second_room = Room("The End", "You are in the second room.", "The second room is through that door.")
     
-    start_room.add_exit("north", second_room, "south")
+    start_room.add_exit("north", second_room)
+    second_room.add_exit("south", start_room)
     
-    game = Game(10, 10, hero, start_room)
+    game = Game(None, hero, start_room) #Passing None for world for now.
     
     game.run()
 

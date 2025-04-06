@@ -105,3 +105,16 @@ class Character:
         print(f"║ {pad_after(hp," ", 14)} ║ {pad_after(sp," ", 14)} ║ {pad_after(ep," ", 14)} ║")
         print("╚════════════════╩════════════════╩════════════════╝")
         print("\n")
+    
+    def say(self, message):
+        print(f"{self.name} says \"{message.strip('"')}\"")
+    
+    def look(self):
+        print(f"You see {self.name}.\n{self.description}")
+    
+    def move(self, destination):
+        self.location = destination
+        print(f"{self.name} moved to {destination.name}")
+        self.location.look()
+
+        

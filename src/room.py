@@ -4,12 +4,11 @@ class Exit:
     class Exit:
     Exits move between rooms.
     """
-    def __init__(self, destination, location):
+    def __init__(self, destination):
         """
         destination is the room you are going to.
         location is the room the door is in.        
         """
-        self.location = location # Room
         self.destination = destination # Room
         
 class Room:
@@ -20,17 +19,20 @@ class Room:
         self.exits = exits
         self.contents = contents
         
-    def add_exit(self, name, destination, return_name):
-        self.exits[name] = Exit(destination, self)
-        destination.exits[return_name] = Exit(self, destination)
+    def add_exit(self, name, destination):
+        self.exits[name] = Exit(destination)
     
-    def status(self):
+    def look(self):
         print("╔══════════════════════════════════════════════════╗")
         print(f"║ {pad_after(self.name, " ",48)} ║")
         print("╠══════════════════════════════════════════════════╣")
         self.fold_description(self.description, 48)
+        print("╠══════════════════════════════════════════════════╣")
+        if len(self.exist_string()) <= 48:
+            print(f"║ {pad_after(self.exist_string(), " ", 48)} ║")
+        else:
+            self.fold_description(self.exist_string(), 48)
         print("╚══════════════════════════════════════════════════╝")
-        
     def fold_description(self, description, length):
         if len(description) <= length:
             print(f"║ {pad_after(description, " ",length)} ║")
@@ -46,5 +48,16 @@ class Room:
         if len(tokens) > 0:
             string = " ".join(tokens)
             self.fold_description(string, length)
-        
+            
+    def exist_string(self):
+        exits = self.exits.keys()
+        exitstring = "Exits:"
+        if len(exits) == 0:
+            return f"{exitstring} No Exits"
+        for key in exits:
+            exitstring = f"{exitstring} {key}"
+        return exitstring
+    
+    def distant_look(self):
+        print(f"You see {self.name}: {self.outer_description}")
 
