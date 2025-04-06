@@ -22,6 +22,10 @@ class Room:
     def add_exit(self, name, destination):
         self.exits[name] = Exit(destination)
     
+    def add_exit_and_return(self, name, destination, return_name):
+        self.add_exit(name, destination)
+        destination.add_exit(return_name, self)
+    
     def look(self):
         print("╔══════════════════════════════════════════════════╗")
         print(f"║ {pad_after(self.name, " ",48)} ║")
