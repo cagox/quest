@@ -12,11 +12,11 @@ class Exit:
         self.destination = destination # Room
         
 class Room:
-    def __init__(self, name="A Room", description=None, outer_description=None, exits={}, contents=[]):
+    def __init__(self, name="A Room", description=None, outer_description=None, contents=[]):
         self.name = name
         self.description = description
         self.outer_description = outer_description
-        self.exits = exits
+        self.exits = {}
         self.contents = contents
         
     def add_exit(self, name, destination):

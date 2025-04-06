@@ -32,6 +32,8 @@ def main():
     start_room.add_exit("north", second_room)
     second_room.add_exit("south", start_room)
     
+    #TODO Figure out why this is putthing both exits in both rooms.
+    
     game = Game(None, hero, start_room) #Passing None for world for now.
     
     game.run()
