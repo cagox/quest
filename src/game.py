@@ -7,13 +7,16 @@ class Game:
     """
     class Game will be the driver of the whole thing. It will use the other classes to run the game.
     """
-    def __init__(self, world, player, start_room):
+    def __init__(self, world, player, start_x=None, start_y=None):
         """
         max_x and max_y set the dimensions for the game world.
         """
         self.world = world
         self.player = player
-        self.player.location = start_room
+        if start_x == None:
+            self.player.location = self.world.get_room(self.world.min_x, self.world.min_y)
+        else:
+            self.player.location = self.world.get_room(start_x, start_y)
         self.interpreter = Interpreter(self)
         self.running = False
         
