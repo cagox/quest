@@ -43,12 +43,18 @@ class Interpreter:
     def parse(self, tokens):
         verb = tokens[0]
         if len(tokens) == 1:
-            if verb == "!exit" or verb == ":q":
+            if verb in QUIT:
                 self.game.stop(f"Good bye! Invoked by {verb}")
+                return
         if verb[0] == '"':
             self.game.player.say(" ".join(tokens))
+            return
         if verb == "say":
             self.game.player.say(" ".join(tokens[1:])) 
+            return
+        if verb in self.game.player.location.exits.keys():
+            self.game.player.move(self.game.player.location.exits[verb].destination)
+            return
         if verb == "look":
             if len(tokens) == 1 or tokens[1] in HERE:
                 self.game.player.location.look()
@@ -56,10 +62,15 @@ class Interpreter:
             if tokens[1] == "me" or tokens[1] == "player":
                 self.game.player.look()
                 return
+            if tokens[1] in self.game.player.location.exits.keys():
+                self.game.player.location.exits[tokens[1]].destination.distant_look()
+                return
             if len(tokens) > 2:
                 if tokens[1] in AT:
                     if tokens[2] == "me" or tokens[2] == "player":
                         self.game.player.look()
+                        return
+                
         if verb in MOVE:
             target = None
             if len(tokens) == 2:
@@ -74,4 +85,7 @@ class Interpreter:
                 self.game.player.move(exits[target].destination)
                 return
             print(f"You cannot go to {target}. It does not exits.")
+            return
+        print("I don't understand.")
+        return
                 
