@@ -29,7 +29,7 @@ class World:
         self.decorate_rooms()
     
     def visit_rooms_r(self, x, y):
-        self.get_room(x,y).seen = True
+        self.get_room(x,y).visited = True
         
         while True:
             next_index_list = []
@@ -54,7 +54,7 @@ class World:
             direction_index = random.randrange(len(next_index_list))
             next_index = next_index_list.pop(direction_index)
             
-            new_x, new_y = next_index
+            new_x, new_y = next_index[0], next_index[1]
             current_room = self.get_room(x,y)
             next_room = self.get_room(new_x, new_y)
             
