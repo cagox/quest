@@ -83,3 +83,19 @@ class World:
     def decorate_rooms(self):
         # TODO: Add this code.
         pass
+    
+    def draw_map(self,player_location):
+        for y in range(self.rows()):
+            row1 = ""
+            row2 = ""
+            row3 = ""
+            for x in range(self.cols()):
+                room = self.grid[x][y]
+                if room == player_location:
+                    rowA, rowB, rowC = room.map_image(True)
+                else:
+                    rowA, rowB, rowC = room.map_image(False)
+                row1 = f"{row1}{rowA}"
+                row2 = f"{row2}{rowB}"
+                row3 = f"{row3}{rowC}"
+            print(f"{row1}\n{row2}\n{row3}")

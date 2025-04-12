@@ -115,6 +115,7 @@ class Character:
     def move(self, destination):
         self.location = destination
         print(f"{self.name} moved to {destination.name}")
+        self.location.visited = True
         self.location.look()
 
         

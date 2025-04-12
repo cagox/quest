@@ -32,7 +32,6 @@ def main():
     #start_room.add_exit_and_return("north", second_room, "south")
     # second_room.add_exit("south", start_room)
     
-      
     game = Game(World(), hero)
     game.world.build_maze()
     game.run()

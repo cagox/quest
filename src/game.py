@@ -22,6 +22,7 @@ class Game:
         
     def run(self):
         self.running = True
+        self.player.location.visited = True
         self.player.location.look()
         command = ""
         while self.running: # != "!exit" and command != ":q":
@@ -45,6 +46,9 @@ class Interpreter:
     
     def parse(self, tokens):
         verb = tokens[0]
+        if verb == "map":
+            self.game.world.draw_map(self.game.player.location)
+            return
         if len(tokens) == 1:
             if verb in QUIT:
                 self.game.stop(f"Good bye! Invoked by {verb}")

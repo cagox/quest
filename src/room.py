@@ -69,4 +69,17 @@ class Room:
     
     def distant_look(self):
         print(f"You see {self.name}: {self.outer_description}")
+    
+    def map_image(self, player_loc=False):
+        if not self.visited:
+            return "   ", "   ", "   "
+        N = " " if "north" in self.exits else "═"
+        S = " " if "south" in self.exits else "═"
+        E = " " if "east" in self.exits else "║"
+        W = " " if "west" in self.exits else "║"
+        P = "@" if player_loc else " "
+        line1 = f"╔{N}╗"
+        line2 = f"{W}{P}{E}"
+        line3 = f"╚{S}╝"
+        return line1, line2, line3
 
