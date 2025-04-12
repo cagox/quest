@@ -9,6 +9,7 @@ from util import COPPER, SILVER, GOLD, PLATINUM
 from game import Game
 from room import Room
 from world import World
+from descriptions import decorate
 
 def main():
     """So far just playing around."""
@@ -34,6 +35,7 @@ def main():
     
     game = Game(World(), hero)
     game.world.build_maze()
+    decorate(game)
     game.run()
 
 main()
